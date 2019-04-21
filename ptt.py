@@ -16,6 +16,7 @@ os.system("amixer -c 1 sset 'Mic',0 Capture 0")
 print("Mic muted")
 
 while True:
+	time.sleep(0.05)
 	try:
 		if mic == 0 and GPIO.input(40) == GPIO.LOW:
 			mic = 1
