@@ -12,7 +12,7 @@ GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Set pin 40 to be an input pi
 
 mic = 0
 print ("Setting mic to off")
-os.system("amixer -c 1 sset Mic off")
+os.system("amixer -c 1 sset 'Mic',0 Capture 0")
 print("Mic muted")
 
 while True:
@@ -20,14 +20,14 @@ while True:
 		if mic == 0 and GPIO.input(40) == GPIO.LOW:
 			mic = 1
 			print("Unmuting mic")
-			os.system("amixer -c 1 sset Mic on")
+			os.system("amixer -c 1 sset 'Mic',0 Capture 100")
 			print("Calling intercom1")
 			os.system("screen -S seren -p 0 -X stuff '/c {}\n'".format(hostname))
 			print("Mic unmuted")
 		elif mic == 1 and GPIO.input(40) == GPIO.HIGH:
 			mic = 0
 			print("Muting mic")
-			os.system("amixer -c 1 sset Mic off")
+			os.system("amixer -c 1 sset 'Mic',0 Capture 0")
 			print("Hanging up")
 			os.system("screen -S seren -p 0 -X stuff '/H\n'")
 			print("Mic muted")
