@@ -1,0 +1,13 @@
+[Unit]
+Description= Seren service
+After=network-online.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/screen -dmS seren /usr/local/bin/seren -d plughw:1 -C 1 -a -n intercom2 -N -S
+Restart=always
+User=pi
+Group=users
+
+[Install]
+WantedBy=multi-user.target

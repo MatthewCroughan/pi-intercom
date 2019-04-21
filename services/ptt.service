@@ -1,0 +1,13 @@
+[Unit]
+Description=Push to talk daemon for Seren service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/scripts/ptt.py
+Restart=on-failure
+User=pi
+Group=users
+
+[Install]
+WantedBy=multi-user.target
